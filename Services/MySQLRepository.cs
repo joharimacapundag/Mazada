@@ -378,7 +378,7 @@ namespace Mazada.Services
             }
 
         }
-
+        //Update
         public async Task UpdateAsync(T entity)
         {
             /*'Get the actual info from generic class Question: Why I decide not to use entity.getType()? 
