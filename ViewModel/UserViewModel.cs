@@ -92,7 +92,7 @@ namespace Mazada.ViewModel
             LoadUsers();
             Reset();
         }
-
+        //Delete user account
         public async void Delete()
         {
             if (SelectedUser != null) await userRepo.DeleteAsync(SelectedUser);
