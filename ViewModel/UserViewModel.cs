@@ -63,21 +63,17 @@ namespace Mazada.ViewModel
             }
         }
 
-        public RelayCommand SignUpCommand => new RelayCommand(e => SignUp(), e => 
+        public RelayCommand SignUpCommand => new RelayCommand(e => SignUpAsync(), e => 
         !string.IsNullOrEmpty(Username) && 
         !string.IsNullOrEmpty(Email) &&
         !string.IsNullOrEmpty(Password) &&
         !string.IsNullOrEmpty(ConfirmPassword)
         );
-        public RelayCommand DeleteCommand => new RelayCommand(e => Delete());
+        public RelayCommand DeleteCommand => new RelayCommand(e => DeleteAsync());
 
-        public UserViewModel()
-        {
-            LoadUsers();
-        }
-
+      
         //Add user account
-        public async void SignUp()
+        public async void SignUpAsync()
         {
 
             User user = new User
@@ -89,17 +85,17 @@ namespace Mazada.ViewModel
 
             await userRepo.AddAsync(user);
 
-            LoadUsers();
+            await LoadUsersAsync();
             Reset();
         }
         //Delete user account
-        public async void Delete()
+        public async void DeleteAsync()
         {
             if (SelectedUser != null) await userRepo.DeleteAsync(SelectedUser);
 
-            LoadUsers();
+            await LoadUsersAsync();
         }
-        public async void LoadUsers()
+        public async Task LoadUsersAsync()
         {
             Users.Clear();
 

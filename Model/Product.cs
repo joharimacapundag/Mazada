@@ -6,7 +6,7 @@ namespace Mazada.Model
     [Table("products")]
     class Product
     {
-        [Column("product_id", AutoIncrement =true, IsPrimaryKey = true)]
+        [Column("product_id", AutoIncrement = true, IsPrimaryKey = true)]
         public int? ProductId { get; private set; }
         [Column("name")]
         public string Name { get; set; }
