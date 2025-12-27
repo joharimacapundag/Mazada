@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Mazada.View
 {
     /// <summary>
-    /// Interaction logic for AccountView.xaml
+    /// Interaction logic for ProductCollectionView.xaml
     /// </summary>
-    public partial class AccountView : UserControl
+    public partial class ProductCollectionView : UserControl
     {
-        public AccountView()
+        public ProductCollectionView()
         {
             InitializeComponent();
         }

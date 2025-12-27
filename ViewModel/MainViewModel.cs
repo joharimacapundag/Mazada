@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mazada.Services;
+using System;
 
 namespace Mazada.ViewModel
 {
@@ -16,24 +17,39 @@ namespace Mazada.ViewModel
             }
         }
 
-        public RelayCommand HomeCommand => new RelayCommand(e=> { Home(); });
-        public RelayCommand AccountCommand => new RelayCommand(e => { Account();  });
+        public RelayCommand LoginCommand => new RelayCommand(e => ShowLogin());
+        public RelayCommand HomeCommand => new RelayCommand(e => ShowHome());
+        public RelayCommand ProductsCommand => new RelayCommand(e => ShowProducts());
+        public RelayCommand ProductCommand => new RelayCommand(e => ShowProduct());
+        public RelayCommand BackCommand => new RelayCommand(e => GoBack());
 
-        public MainViewModel()
+        public void ShowLogin()
         {
-            CurrentViewModel = new HomeViewModel();
+            var nav = Navigation.GetInstance();
+            nav.NavigateTo<LoginViewModel>(this);
+        }
+        public void ShowHome()
+        {
+            var nav = Navigation.GetInstance();
+            nav.NavigateTo<HomeViewModel>(this);
         }
 
-        public void Home()
+        public void ShowProducts()
         {
-            CurrentViewModel = new HomeViewModel();
-            Console.WriteLine("Home");
+            var nav = Navigation.GetInstance();
+            nav.NavigateTo<ProductCollectionViewModel>(this);
         }
 
-        public void Account()
+        public void ShowProduct()
         {
-            CurrentViewModel = new AccountViewModel();
-            Console.WriteLine("Account");
+            var nav = Navigation.GetInstance();
+            nav.NavigateTo<ProductDetailView>(this);
+        }
+
+        public void GoBack()
+        {
+            var nav = Navigation.GetInstance();
+            nav.GoBack(this);
         }
     }
 }

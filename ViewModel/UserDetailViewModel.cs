@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mazada.ViewModel
 {
-    class AccountViewModel : ViewModelBase
+    class UserDetailViewModel : ViewModelBase
     {
     }
 }

@@ -14,22 +14,29 @@
             <RowDefinition />
             <RowDefinition Height=".1*"/>
         </Grid.RowDefinitions>
-        
         <ContentControl Grid.Row="0" Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewModels:LoginViewModel}"> 
+                    <views:LoginView/>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
                     <views:HomeView/>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:AccountViewModel}">
-                    <views:AccountView/>
+                <DataTemplate DataType="{x:Type viewModels:ProductCollectionViewModel}">
+                    <views:ProductCollectionView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:ProductDetailView}">
+                    <views:ProductDetailView/>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Command="{Binding HomeCommand}" Content="Home View" Margin="5">
-            </Button>
-            <Button Command="{Binding AccountCommand}" Content="Account View" Margin="5"/>
+            <Button Command="{Binding LoginCommand}" Content="Login" Margin="5"  Width="100"/>
+            <Button Command="{Binding HomeCommand}" Content="Home" Margin="5" Width="100"/>
+            <Button Command="{Binding ProductsCommand}" Content="Products" Margin="5" Width="100"/>
+            <Button Command="{Binding ProductCommand}" Content="Product Detail" Margin="5" Width="100"/>
+            <Button Command="{Binding BackCommand}" Content="Go Back" Margin="5" Width="100"/>
         </StackPanel>
     </Grid>
     
