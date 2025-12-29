@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:Mazada"
              StartupUri="View/MainView.xaml">
     <Application.Resources>
-        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Templates/ViewTemplates.xaml"/>

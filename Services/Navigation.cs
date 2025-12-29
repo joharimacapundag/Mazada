@@ -8,8 +8,12 @@ namespace Mazada.Services
     class Navigation
     {
         private static Navigation _instance;
-        private static Stack<ViewModelBase> _stackViews = new Stack<ViewModelBase>();
-        private Navigation() { }
+        private static readonly Stack<ViewModelBase> _stackViews = new Stack<ViewModelBase>();
+
+        private Navigation()
+        {
+
+        }
 
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel 
@@ -60,7 +64,7 @@ namespace Mazada.Services
 
         public static Navigation GetInstance()
         {
-            return _instance != null ? _instance : _instance = new Navigation();
+            return _instance ?? (_instance = new Navigation());
         }
 
     }

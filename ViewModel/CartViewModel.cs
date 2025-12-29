@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mazada.ViewModel
 {
-    class CartViewModel
+    class CartViewModel : ViewModelBase
     {
+        public override void OnParameterChanged(params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

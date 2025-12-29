@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Mazada.View.Subview.HeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mazada.View.Subview"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="500">
+    <Grid>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".2*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width=".2*"/>
+                <ColumnDefinition Width=".2*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Text="{Binding SearchText}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
+            <Button Command="{Binding SearchCommand}" Grid.Column="2" Content="Search" MaxHeight="40" />
+
+        </Grid>
+    </Grid>
+</UserControl>

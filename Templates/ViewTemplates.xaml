@@ -20,4 +20,8 @@
         <views:ProductDetailView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewModels:OrderConfirmationViewModel}">
+        <views:OrderConfirmationView/>
+    </DataTemplate>
+
 </ResourceDictionary>

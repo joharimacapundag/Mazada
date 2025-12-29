@@ -114,6 +114,7 @@
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OrderConfirmationViewModel.cs" />
     <Compile Include="ViewModel\ProductCollectionViewModel.cs" />
     <Compile Include="ViewModel\ProductDetailView.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="View\Subview\BannerView.xaml.cs">
       <DependentUpon>BannerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Subview\HeaderView.xaml.cs">
+      <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Subview\ProductFeatureView.xaml.cs">
       <DependentUpon>ProductFeatureView.xaml</DependentUpon>
@@ -193,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Subview\BannerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Subview\HeaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

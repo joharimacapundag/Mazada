@@ -112,5 +112,9 @@ namespace Mazada.ViewModel
             Password = null;
             ConfirmPassword = null;
         }
+
+        public override void OnParameterChanged(params object[] parameters)
+        {
+        }
     }
 }

@@ -8,5 +8,9 @@ namespace Mazada.ViewModel
 {
     class LoginViewModel : ViewModelBase
     {
+        public override void OnParameterChanged(params object[] parameters)
+        {
+
+        }
     }
 }

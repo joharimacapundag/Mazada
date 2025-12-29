@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mazada.View"
+             xmlns:subviews="clr-namespace:Mazada.View.Subview"
              xmlns:php="clr-namespace:Mazada.Services"
              mc:Ignorable="d" 
              Background="#F5F5F5"
@@ -31,22 +32,8 @@
             <ColumnDefinition Width=".2*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#666666"/>
-        <Grid Grid.Column="1">
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".2*"/>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width=".2*"/>
-                    <ColumnDefinition Width=".2*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Text="{Binding SearchText}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
-                <Button Command="{Binding SearchCommand}" Grid.Column="2" Content="Search" MaxHeight="40" />
-
-            </Grid>
-        </Grid>
-        <!--ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" ItemsSource="{Binding Products}" ItemTemplate="{StaticResource CardTemplate}"/-->
-        <ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" ItemsSource="{Binding Products}" ItemTemplate="{StaticResource CardTemplate}"/>
+        <subviews:HeaderView Grid.Row="0" Grid.Column="1"/>
+        <ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" ItemsSource="{Binding Products}" ItemTemplate="{StaticResource CardTemplate}" SelectedItem="{Binding SelectedProduct}" />
 
     </Grid>
 </UserControl>

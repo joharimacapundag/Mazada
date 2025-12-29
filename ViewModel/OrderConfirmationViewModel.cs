@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mazada.ViewModel
 {
-    class UserDetailViewModel : ViewModelBase
+    class OrderConfirmationViewModel : ViewModelBase
     {
         public override void OnParameterChanged(params object[] parameters)
         {
+            
         }
     }
 }

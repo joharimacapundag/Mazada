@@ -32,7 +32,8 @@ namespace Mazada.ViewModel
         }
         public MainViewModel()
         {
-            Navigation.GetInstance().ViewModelChanged += vm => CurrentViewModel = vm;
+            Navigation.GetInstance().ViewModelChanged += viewModel => CurrentViewModel = viewModel;
+            //Run();
         }
 
         public async Task Task1()
@@ -67,6 +68,12 @@ namespace Mazada.ViewModel
                 Navigation.GetInstance().NavigateTo<LoginViewModel>();
             }
         }
+
+        public override void OnParameterChanged(params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
         public RelayCommand LoginCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<LoginViewModel>());
         public RelayCommand HomeCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<HomeViewModel>());
         public RelayCommand ProductsCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<ProductCollectionViewModel>());

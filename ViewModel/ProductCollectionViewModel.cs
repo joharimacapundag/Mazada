@@ -19,12 +19,23 @@ namespace Mazada.ViewModel
                 OnPropertyChanged();
             }
         }
+        private Product _selectedProduct;
+
+        public Product SelectedProduct
+        {
+            get => _selectedProduct;
+            set 
+            { 
+                _selectedProduct = value;
+                OnPropertyChanged();
+                Navigation.GetInstance().NavigateTo<ProductDetailView>(_selectedProduct);
+            }
+        }
+
         public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
         private MySQLRepository<Product> productRepo = new MySQLRepository<Product>();
         public ProductCollectionViewModel()
         {
-            //On parameter changed
-            ParameterChanged += param => SearchText = (string)param;
             LoadProduct();
         }
 
@@ -48,6 +59,14 @@ namespace Mazada.ViewModel
             foreach (var prod in products)
             {
                 Products.Add(prod);
+            }
+        }
+
+        public override void OnParameterChanged(params object[] parameters)
+        {
+            if (parameters.Length == 1)
+            {
+                SearchText = (string)parameters[0];
             }
         }
     }

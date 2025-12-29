@@ -301,7 +301,7 @@ namespace Mazada.Services
             var parameterName = $"@{column}";
             var commandText = $"SELECT * FROM {tableName} WHERE {column} = {parameterName}";
 
-            T entity = default(T);
+            T entity = default;
 
             using (var connection = new MySqlConnection(ConnectionString))
             using (var command = new MySqlCommand(commandText, connection))
@@ -374,9 +374,7 @@ namespace Mazada.Services
                 {
                     MessageBox.Show(ex.Message);
                 }
-
             }
-
         }
         public async Task UpdateAsync(T entity)
         {

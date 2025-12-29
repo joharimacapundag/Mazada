@@ -1,14 +1,10 @@
 ﻿using Mazada.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mazada.ViewModel
 {
     class HomeViewModel : ViewModelBase
     {
+
         private string _searchText;
 
         public string SearchText
@@ -23,10 +19,13 @@ namespace Mazada.ViewModel
 
         public RelayCommand SearchCommand => new RelayCommand(e => Search());
 
+        public override void OnParameterChanged(params object[] parameters)
+        {
+        }
+
         private void Search()
         {
-            var nav = Navigation.GetInstance();
-            nav.NavigateTo<ProductCollectionViewModel>(SearchText);
+            Navigation.GetInstance().NavigateTo<ProductCollectionViewModel>(SearchText);
         }
 
     }
