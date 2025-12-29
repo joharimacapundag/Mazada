@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Mazada.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for CartView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class CartView : UserControl
     {
-        public LoginView()
+        public CartView()
         {
             InitializeComponent();
         }
     }
-        
 }

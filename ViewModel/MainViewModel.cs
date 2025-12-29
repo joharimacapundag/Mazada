@@ -1,55 +1,77 @@
 ﻿using Mazada.Services;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Mazada.ViewModel
 {
     class MainViewModel : ViewModelBase
     {
+        
         private ViewModelBase _currentViewModel;
-
         public ViewModelBase CurrentViewModel
         {
             get => _currentViewModel;
-            set 
-            { 
+            set
+            {
                 _currentViewModel = value;
                 OnPropertyChanged();
             }
         }
 
-        public RelayCommand LoginCommand => new RelayCommand(e => ShowLogin());
-        public RelayCommand HomeCommand => new RelayCommand(e => ShowHome());
-        public RelayCommand ProductsCommand => new RelayCommand(e => ShowProducts());
-        public RelayCommand ProductCommand => new RelayCommand(e => ShowProduct());
-        public RelayCommand BackCommand => new RelayCommand(e => GoBack());
+        private int _progressBarTask;
 
-        public void ShowLogin()
+        public int ProgressBarTask
         {
-            var nav = Navigation.GetInstance();
-            nav.NavigateTo<LoginViewModel>(this);
+            get => _progressBarTask; 
+            set 
+            { 
+                _progressBarTask = value;
+                OnPropertyChanged();
+            }
         }
-        public void ShowHome()
+        public MainViewModel()
         {
-            var nav = Navigation.GetInstance();
-            nav.NavigateTo<HomeViewModel>(this);
-        }
-
-        public void ShowProducts()
-        {
-            var nav = Navigation.GetInstance();
-            nav.NavigateTo<ProductCollectionViewModel>(this);
+            Navigation.GetInstance().ViewModelChanged += vm => CurrentViewModel = vm;
         }
 
-        public void ShowProduct()
+        public async Task Task1()
         {
-            var nav = Navigation.GetInstance();
-            nav.NavigateTo<ProductDetailView>(this);
+            await Task.Delay(1000);
+            ProgressBarTask += 1;
+        }
+        public async Task Task2()
+        {
+            await Task.Delay(2000);
+            ProgressBarTask += 1;
+        }
+        public async Task Task3()
+        {
+            await Task.Delay(3000);
+            ProgressBarTask += 1;
+        }
+        public async Task Task4()
+        {
+            await Task.Delay(4000);
+            ProgressBarTask += 1;
         }
 
-        public void GoBack()
+        public async void Run()
         {
-            var nav = Navigation.GetInstance();
-            nav.GoBack(this);
+            await Task1();
+            await Task2();
+            await Task3();
+            await Task4();
+            if (_progressBarTask == 4)
+            {
+                Navigation.GetInstance().NavigateTo<LoginViewModel>();
+            }
         }
+        public RelayCommand LoginCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<LoginViewModel>());
+        public RelayCommand HomeCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<HomeViewModel>());
+        public RelayCommand ProductsCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<ProductCollectionViewModel>());
+        public RelayCommand ProductCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<ProductDetailView>());
+        public RelayCommand BackCommand => new RelayCommand(e => Navigation.GetInstance().GoBack());
+
     }
 }

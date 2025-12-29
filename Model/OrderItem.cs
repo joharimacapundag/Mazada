@@ -14,6 +14,6 @@ namespace Mazada.Model
         [Column("quantity")]
         public int Quantity { get; set; }
         [Column("price", AutoIncrement = true)]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

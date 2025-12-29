@@ -1,4 +1,5 @@
 ﻿using Mazada.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,21 @@ namespace Mazada.Services
         private static Navigation _instance;
         private static Stack<ViewModelBase> _stackViews = new Stack<ViewModelBase>();
         private Navigation() { }
-        public void NavigateTo<TViewModel>(MainViewModel mainViewModel) where TViewModel : ViewModelBase, new()
+
+        private ViewModelBase _currentViewModel;
+        public ViewModelBase CurrentViewModel 
+        {
+            get => _currentViewModel;
+            set
+            {
+                _currentViewModel = value;
+                ViewModelChanged?.Invoke(_currentViewModel);
+            }
+        }
+
+        public event Action<ViewModelBase> ViewModelChanged;
+
+        public void NavigateTo<TViewModel>(object parameter = null) where TViewModel : ViewModelBase, new()
         {
 
             // Check if a ViewModel of this type already exists in the stack
@@ -21,23 +36,25 @@ namespace Mazada.Services
                 while (_stackViews.Peek() != existing)
                     _stackViews.Pop();
 
-                mainViewModel.CurrentViewModel = existing;
+                CurrentViewModel = existing;
+                CurrentViewModel.Parameter = parameter;
             }
             else
             {
                 // Create new view model
                 var viewModel = new TViewModel();
                 _stackViews.Push(viewModel);
-                mainViewModel.CurrentViewModel = viewModel;
+
+                CurrentViewModel = viewModel;
+                CurrentViewModel.Parameter = parameter;
             }
         }
-
-        public void GoBack(MainViewModel mainViewModel)
+        public void GoBack()
         {
             if (_stackViews.Count > 1)
             {
                 _stackViews.Pop();
-                mainViewModel.CurrentViewModel = _stackViews.Peek();
+                CurrentViewModel = _stackViews.Peek();
             }
         }
 

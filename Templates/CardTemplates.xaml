@@ -1,0 +1,42 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:Mazada.View.ViewMode">
+
+    <Style 
+        x:Key="{ComponentResourceKey 
+            TypeInTargetAssembly={x:Type l:CardView},
+            ResourceId=cardViewDSK}"
+        TargetType="{x:Type ListView}"
+        BasedOn="{StaticResource {x:Type ListBox}}">
+
+        <!-- Center items -->
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+        <!-- Bind the ListView's ItemContainerStyle to CardView.ItemContainerStyle -->
+        <Setter Property="ItemContainerStyle"
+                Value="{Binding (ListView.View).ItemContainerStyle,
+                                RelativeSource={RelativeSource Self}}"/>
+
+        <!-- Bind the ItemTemplate from CardView -->
+        <Setter Property="ItemTemplate"
+                Value="{Binding (ListView.View).ItemTemplate,
+                                RelativeSource={RelativeSource Self}}"/>
+
+        <!-- Set the ItemsPanel to WrapPanel with width, item width, item height taken from CardView -->
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel 
+                    ItemWidth="{Binding (ListView.View).ItemWidth,
+                        RelativeSource={RelativeSource AncestorType=ListView}}"
+                    ItemHeight="{Binding (ListView.View).ItemHeight,
+                        RelativeSource={RelativeSource AncestorType=ListView}}"
+                    Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

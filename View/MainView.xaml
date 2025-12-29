@@ -12,33 +12,31 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewModels:LoginViewModel}"> 
-                    <views:LoginView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
-                    <views:HomeView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:ProductCollectionViewModel}">
-                    <views:ProductCollectionView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:ProductDetailView}">
-                    <views:ProductDetailView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ProgressBar Grid.Row="1" Width="Auto" Height="25" Margin="5" Value="{Binding ProgressBarTask}" BorderBrush="Black" Maximum="4"/>
+        </Grid>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Command="{Binding LoginCommand}" Content="Login" Margin="5"  Width="100"/>
-            <Button Command="{Binding HomeCommand}" Content="Home" Margin="5" Width="100"/>
-            <Button Command="{Binding ProductsCommand}" Content="Products" Margin="5" Width="100"/>
-            <Button Command="{Binding ProductCommand}" Content="Product Detail" Margin="5" Width="100"/>
-            <Button Command="{Binding BackCommand}" Content="Go Back" Margin="5" Width="100"/>
+        <ContentControl Grid.ColumnSpan="3" Grid.Row="0" Content="{Binding CurrentViewModel}" />
+        
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal" Margin="5,0,5,0">
+            <Button Command="{Binding LoginCommand}" Content="Login" Margin="5"  Width="100" Height="24"/>
+            <Button Command="{Binding HomeCommand}" Content="Home" Margin="5" Width="100" Height="24"/>
+            <Button Command="{Binding ProductsCommand}" Content="Products" Margin="5" Width="100" Height="24"/>
+            <Button Command="{Binding ProductCommand}" Content="Product Detail" Margin="5" Width="100" Height="24"/>
+            <Button Command="{Binding BackCommand}" Content="Go Back" Margin="5" Width="100" Height="24"/>
         </StackPanel>
+        
     </Grid>
-    
-
 </Window>

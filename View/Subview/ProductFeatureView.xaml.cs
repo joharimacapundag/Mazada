@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Mazada.View
+namespace Mazada.View.Subview
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for ProductFeatureView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class ProductFeatureView : UserControl
     {
-        public LoginView()
+        public ProductFeatureView()
         {
             InitializeComponent();
         }
     }
-        
 }

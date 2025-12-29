@@ -4,9 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mazada.View"
+             xmlns:php="clr-namespace:Mazada.Services"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Background="#F5F5F5"
+             d:DesignHeight="450" d:DesignWidth="800"
+             
+             >
+    <UserControl.Resources>
+        <php:UsdToPhpConverter x:Key="UsdToPhp" ExchangeRate="56.5"/>
+        <DataTemplate x:Key="CardTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" FontSize="16" Margin="0,0,0,1" />
+                <TextBlock Text="{Binding Description}" FontSize="12"  Margin="0,0,0,1" />
+                <TextBlock Text="{Binding Price, Converter={StaticResource UsdToPhp}}" FontSize="10"  Margin="0,0,0,1" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-        <Label Content="Production Collection View" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".15*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*"/>
+            <ColumnDefinition MinWidth="320"/>
+            <ColumnDefinition Width=".2*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#666666"/>
+        <Grid Grid.Column="1">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Text="{Binding SearchText}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
+                <Button Command="{Binding SearchCommand}" Grid.Column="2" Content="Search" MaxHeight="40" />
+
+            </Grid>
+        </Grid>
+        <!--ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" ItemsSource="{Binding Products}" ItemTemplate="{StaticResource CardTemplate}"/-->
+        <ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" ItemsSource="{Binding Products}" ItemTemplate="{StaticResource CardTemplate}"/>
+
     </Grid>
 </UserControl>

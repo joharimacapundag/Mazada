@@ -15,7 +15,7 @@ namespace Mazada.Model
         [Column("user_id")]
         public int UserId { get; set; }
         [Column("total_amount")]
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
         [Column("status")]
         public OrderStatus Status { get; set; } = OrderStatus.PENDING;
         [Column("created_at", AutoIncrement = true)]

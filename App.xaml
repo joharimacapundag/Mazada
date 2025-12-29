@@ -5,5 +5,11 @@
              StartupUri="View/MainView.xaml">
     <Application.Resources>
         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Templates/ViewTemplates.xaml"/>
+                <ResourceDictionary Source="/Templates/CardTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -5,8 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mazada.View"
              mc:Ignorable="d" 
+             Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Login View" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width=".4*" MinWidth="320" MaxWidth="320"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0" Fill="#666666" />
+        <StackPanel Grid.Column="1">
+            <Rectangle Fill="#888888" Height="50"/>
+            <Label Content="Username" Margin="8, 10, 8, 0"/>
+            <TextBox Text="{Binding Username}" Margin="13,0,13,0"/>
+            <Label Content="Email" Margin="8, 4, 8, 0"/>
+            <TextBox Text="{Binding Email}" Margin="13,0,13,0"/>
+            <Label Content="Password" Margin="8, 4, 8, 0"/>
+            <TextBox Text="{Binding Password}" Margin="13,0,13,0"/>
+            <Label Content="Confirm Password" Margin="8, 4, 8, 0"/>
+            <TextBox Text="{Binding ConfirmPassword}" Margin="13,0,13,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0"  >
+                <Button Content="REGISTER" Margin="13,0,4,0" Width="100" Height="24"/>
+                <Button Content="SWITCH" Margin="4,0,4,0" Width="100" Height="24"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

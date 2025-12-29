@@ -13,7 +13,7 @@ namespace Mazada.Model
         [Column("description")]
         public string Description { get; set; }
         [Column("price")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [Column("stock")]
         public int Stock { get; set; } = 0;
         [Column("created_at", AutoIncrement = true)]

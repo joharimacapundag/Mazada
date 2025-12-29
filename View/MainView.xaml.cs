@@ -14,7 +14,6 @@ namespace Mazada
             InitializeComponent();
             var currentViewModel = new MainViewModel();
             DataContext = currentViewModel;
-
         }
     }
 }
