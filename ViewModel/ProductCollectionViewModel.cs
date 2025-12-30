@@ -62,12 +62,10 @@ namespace Mazada.ViewModel
             }
         }
 
-        public override void OnParameterChanged(params object[] parameters)
+        public override void OnParameterChanged(object parameter)
         {
-            if (parameters.Length == 1)
-            {
-                SearchText = (string)parameters[0];
-            }
+            SearchText = (string)parameter;
+            
         }
     }
 }

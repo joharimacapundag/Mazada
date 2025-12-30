@@ -8,9 +8,8 @@ namespace Mazada.ViewModel
 {
     class CartViewModel : ViewModelBase
     {
-        public override void OnParameterChanged(params object[] parameters)
+        public override void OnParameterChanged(object parameter)
         {
-            throw new NotImplementedException();
         }
     }
 }

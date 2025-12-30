@@ -15,7 +15,7 @@
                 <ColumnDefinition Width=".2*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text="{Binding SearchText}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
             <Button Command="{Binding SearchCommand}" Grid.Column="2" Content="Search" MaxHeight="40" />
 
         </Grid>

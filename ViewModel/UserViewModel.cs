@@ -71,7 +71,10 @@ namespace Mazada.ViewModel
         );
         public RelayCommand DeleteCommand => new RelayCommand(e => DeleteAsync());
 
-      
+        public override void OnParameterChanged(object parameter)
+        {
+
+        }
         //Add user account
         public async void SignUpAsync()
         {
@@ -113,8 +116,6 @@ namespace Mazada.ViewModel
             ConfirmPassword = null;
         }
 
-        public override void OnParameterChanged(params object[] parameters)
-        {
-        }
+        
     }
 }

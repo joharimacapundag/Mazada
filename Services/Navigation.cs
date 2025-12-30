@@ -9,11 +9,7 @@ namespace Mazada.Services
     {
         private static Navigation _instance;
         private static readonly Stack<ViewModelBase> _stackViews = new Stack<ViewModelBase>();
-
-        private Navigation()
-        {
-
-        }
+        private Navigation(){}
 
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel 
@@ -30,7 +26,6 @@ namespace Mazada.Services
 
         public void NavigateTo<TViewModel>(object parameter = null) where TViewModel : ViewModelBase, new()
         {
-
             // Check if a ViewModel of this type already exists in the stack
             var existing = _stackViews.OfType<TViewModel>().FirstOrDefault();
 

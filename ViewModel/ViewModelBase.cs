@@ -19,20 +19,21 @@ namespace Mazada.ViewModel
         
         public event PropertyChangedEventHandler PropertyChanged;
         public event ParameterEventHandler ParameterChanged;
-        public ViewModelBase()
-        {
-            ParameterChanged += OnParameterChanged;
-        }
-
-        public delegate void ParameterEventHandler(params object[] parameters);
-
+      
+        public delegate void ParameterEventHandler(object parameter);
+        public abstract void OnParameterChanged(object parameter);
         //CallerMemberName automatically assign a value from class property in compile time
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public abstract void OnParameterChanged(params object[] parameters);
+        public ViewModelBase()
+        {
+            ParameterChanged += OnParameterChanged;
+        }
+
+      
 
        
     }

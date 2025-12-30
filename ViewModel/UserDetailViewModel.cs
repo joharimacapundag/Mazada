@@ -8,7 +8,7 @@ namespace Mazada.ViewModel
 {
     class UserDetailViewModel : ViewModelBase
     {
-        public override void OnParameterChanged(params object[] parameters)
+        public override void OnParameterChanged(object parameter)
         {
         }
     }

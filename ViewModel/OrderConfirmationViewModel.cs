@@ -1,16 +1,46 @@
-﻿using System;
+﻿using Mazada.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Mazada.ViewModel
 {
     class OrderConfirmationViewModel : ViewModelBase
     {
-        public override void OnParameterChanged(params object[] parameters)
+        private Product _product;
+        public Product Product
         {
-            
+            get => _product; 
+            set 
+            { 
+                _product = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _quantity;
+
+        public int Quantity
+        {
+            get =>_quantity;
+            set 
+            { 
+                _quantity = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public ObservableCollection<OrderItemNavArgs> OrderItems { get; set; } = new ObservableCollection<OrderItemNavArgs>();
+        public override void OnParameterChanged(object parameter)
+        {
+            if (parameter is OrderItemNavArgs)
+            {
+                var orderItem = (OrderItemNavArgs)parameter;
+                Product = orderItem.Product;
+                Quantity = orderItem.Quantity;
+                OrderItems.Add(new OrderItemNavArgs {Product = Product, Quantity = Quantity });
+            }
+           
         }
     }
 }

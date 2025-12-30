@@ -19,7 +19,7 @@ namespace Mazada.ViewModel
 
         public RelayCommand SearchCommand => new RelayCommand(e => Search());
 
-        public override void OnParameterChanged(params object[] parameters)
+        public override void OnParameterChanged(object parameter)
         {
         }
 

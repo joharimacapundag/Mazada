@@ -1,6 +1,7 @@
 ﻿using Mazada.Model;
 using Mazada.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Mazada.ViewModel
 {
@@ -46,12 +47,9 @@ namespace Mazada.ViewModel
         public RelayCommand BuyCommand => new RelayCommand(e => Buy());
         public RelayCommand AddToCartCommand => new RelayCommand(e => AddToCart());
 
-        public override void OnParameterChanged(params object[] parameters)
+        public override void OnParameterChanged(object parameter)
         {
-            if (parameters.Length == 1)
-            {
-                Product = (Product)parameters[0];
-            }
+            Product = (Product)parameter;
         }
 
         public void DecreaseQuantity()
@@ -66,7 +64,7 @@ namespace Mazada.ViewModel
         public void Buy()
         {
             Console.WriteLine("New Order +");
-            Navigation.GetInstance().NavigateTo<OrderConfirmationViewModel>();
+            Navigation.GetInstance().NavigateTo<OrderConfirmationViewModel>(new OrderItemNavArgs() { Product = Product, Quantity = Quantity });
         }
 
         public void AddToCart()

@@ -104,6 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\OrderItemNavArgs.cs" />
     <Compile Include="Services\ColumnAttribute.cs" />
     <Compile Include="Services\IRepository.cs" />
     <Compile Include="Services\MySQLRepository.cs" />
