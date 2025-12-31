@@ -17,15 +17,15 @@
                     <TextBlock Text="{Binding Product.Name}" FontSize="16"/>
                     <TextBlock Text="{Binding Product.Description}" FontSize="12"/>
                 </StackPanel>
-                <StackPanel Margin="0,0,5,0">
-                    <TextBlock Text="{Binding Product.Price, Converter={StaticResource UsdToPhp}}" FontSize="16"/>
+                <StackPanel >
+                    <TextBlock Text="{Binding Product.Price, Converter={StaticResource UsdToPhp}}" FontSize="12"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
-                    <TextBlock Text="Quantity: " FontSize="16"/>
-                    <TextBlock Text="{Binding Quantity}" FontSize="16"/>
+                    <TextBlock Text="×" FontSize="12"/>
+                    <TextBlock Text="{Binding Quantity}" FontSize="12"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Total: " FontSize="16"/>
+                <StackPanel >
+                    <TextBlock Text="TOTAL: " FontSize="12"/>
                     <TextBlock Text="{Binding TotalPrice, Converter={StaticResource UsdToPhp}}" FontSize="16"/>
                 </StackPanel>
             </StackPanel>

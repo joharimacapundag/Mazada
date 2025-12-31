@@ -7,6 +7,5 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Cart View" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

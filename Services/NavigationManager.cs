@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mazada.ViewModel
+namespace Mazada.Services
 {
-    class UserDetailViewModel : ViewModelBase
+    class NavigationManager
     {
+        private INavigation[] children;
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Mazada.ViewModel
 {
-    class ProductCollectionViewModel : ViewModelBase
+    class ProductCollectionViewModel : ViewModelBase, INavigationAware<string>
     {
         private string _searchText;
         public string SearchText
@@ -24,22 +24,25 @@ namespace Mazada.ViewModel
         public Product SelectedProduct
         {
             get => _selectedProduct;
-            set 
-            { 
+            set
+            {
                 _selectedProduct = value;
                 OnPropertyChanged();
-                Navigation.GetInstance().NavigateTo<ProductDetailView>(_selectedProduct);
+                if (navigation != null)
+                    navigation.NavigateTo<ProductDetailView, Product>(_selectedProduct);
+                //StackNavigation.GetInstance().NavigateTo<ProductDetailView>(_selectedProduct);
             }
         }
-
         public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
         private MySQLRepository<Product> productRepo = new MySQLRepository<Product>();
+
+        private INavigation navigation;
         public ProductCollectionViewModel()
         {
             LoadProduct();
         }
 
-        public RelayCommand SearchCommand => new RelayCommand(e => Search());
+        //public RelayCommand SearchCommand => new RelayCommand(e => Search());
         private async void Search()
         {
             Products.Clear();
@@ -55,17 +58,17 @@ namespace Mazada.ViewModel
         private async void LoadProduct()
         {
             var products = await productRepo.GetAllAsync();
-
             foreach (var prod in products)
             {
                 Products.Add(prod);
             }
         }
 
-        public override void OnParameterChanged(object parameter)
+        public void OnNavigatedTo(INavigation navigation, string parameter)
         {
-            SearchText = (string)parameter;
-            
+            this.navigation = navigation;
+            SearchText = parameter;
+
         }
     }
 }

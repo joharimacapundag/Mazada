@@ -19,10 +19,10 @@ namespace Mazada.Services
             //Get the actual info from generic class(e.g class name, properties, methods, ...)
             Type t = typeof(T);
             //Get the table name from marked table attribute
-            string tableName = t.GetCustomAttribute<ColumnAttribute>().Name;
+            string tableName = t.GetCustomAttribute<TableAttribute>().Name;
             //Get all properties(getters-setters) with column names and values from marked column attribute excluding that is primary key and auto increment
             var properties = t.GetProperties()
-                .Where(attr => attr.GetCustomAttribute<ColumnAttribute>() != null && !attr.GetCustomAttribute<ColumnAttribute>().AutoIncrement && !attr.GetCustomAttribute<ColumnAttribute>().IsPrimaryKey);
+                .Where(propInfo => propInfo.GetCustomAttribute<ColumnAttribute>() != null && !propInfo.GetCustomAttribute<ColumnAttribute>().AutoIncrement && !propInfo.GetCustomAttribute<ColumnAttribute>().IsPrimaryKey);
             //We will use columns, parameterNames(placeholder names), and parameters(mysql) later in a few line
             var columns = new List<string>();
             var paramaterNames = new List<string>();
@@ -31,13 +31,13 @@ namespace Mazada.Services
             foreach (var prop in properties)
             {
                 string col = prop.GetCustomAttribute<ColumnAttribute>().Name; //Get columnn name from marked column attribute
-                var paramName = $"@{col}";
+                string paramName = $"@{col}";
                 columns.Add(col);
                 paramaterNames.Add(paramName);
-                parameters.Add(new MySqlParameter(paramName, prop.GetValue(entity) ?? DBNull.Value));
+                parameters.Add(new MySqlParameter(paramName, prop.GetValue(entity) ?? DBNull.Value)); //Adding placeholder for command
             }
 
-            var commandText = $"INSERT INTO {tableName} ({string.Join(",", columns)}) VALUES ({string.Join(",", paramaterNames)})";
+            string commandText = $"INSERT INTO {tableName} ({string.Join(",", columns)}) VALUES ({string.Join(",", paramaterNames)})";
 
             using (var connection = new MySqlConnection(ConnectionString))
             using (var command = new MySqlCommand(commandText, connection))
@@ -45,7 +45,6 @@ namespace Mazada.Services
                 try
                 {
                     connection.Open();
-                    command.Prepare();
                     command.Parameters.AddRange(parameters.ToArray()); //Add parameters to the actual command parameters
                     command.ExecuteNonQuery();
                 }

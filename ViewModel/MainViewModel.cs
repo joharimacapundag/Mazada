@@ -7,8 +7,17 @@ namespace Mazada.ViewModel
 {
     class MainViewModel : ViewModelBase
     {
-        
+        private int _progressBarTask;
         private ViewModelBase _currentViewModel;
+        public int ProgressBarTask
+        {
+            get => _progressBarTask;
+            set
+            {
+                _progressBarTask = value;
+                OnPropertyChanged();
+            }
+        }
         public ViewModelBase CurrentViewModel
         {
             get => _currentViewModel;
@@ -19,22 +28,20 @@ namespace Mazada.ViewModel
             }
         }
 
-        private int _progressBarTask;
+        private INavigation _stackNavigation = new StackNavigation();
 
-        public int ProgressBarTask
-        {
-            get => _progressBarTask; 
-            set 
-            { 
-                _progressBarTask = value;
-                OnPropertyChanged();
-            }
-        }
         public MainViewModel()
         {
-            Navigation.GetInstance().ViewModelChanged += viewModel => CurrentViewModel = viewModel;
+            _stackNavigation.ViewModelChanged += OnViewModelChanged;
             //Run();
         }
+        private void OnViewModelChanged(ViewModelBase viewModel) => CurrentViewModel = viewModel;
+
+        public RelayCommand LoginCommand => new RelayCommand(e => _stackNavigation.NavigateTo<LoginViewModel>());
+        public RelayCommand HomeCommand => new RelayCommand(e => _stackNavigation.NavigateTo<HomeViewModel>());
+        public RelayCommand ProductsCommand => new RelayCommand(e => _stackNavigation.NavigateTo<ProductCollectionViewModel>());
+        public RelayCommand ProductCommand => new RelayCommand(e => _stackNavigation.NavigateTo<ProductDetailView>());
+        public RelayCommand BackCommand => new RelayCommand(e => _stackNavigation.GoBack());
 
         public async Task Task1()
         {
@@ -65,19 +72,8 @@ namespace Mazada.ViewModel
             await Task4();
             if (_progressBarTask == 4)
             {
-                Navigation.GetInstance().NavigateTo<LoginViewModel>();
+                _stackNavigation.NavigateTo<LoginViewModel>();
             }
         }
-
-        public override void OnParameterChanged(object parameter)
-        {
-        }
-
-        public RelayCommand LoginCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<LoginViewModel>());
-        public RelayCommand HomeCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<HomeViewModel>());
-        public RelayCommand ProductsCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<ProductCollectionViewModel>());
-        public RelayCommand ProductCommand => new RelayCommand(e => Navigation.GetInstance().NavigateTo<ProductDetailView>());
-        public RelayCommand BackCommand => new RelayCommand(e => Navigation.GetInstance().GoBack());
-
     }
 }

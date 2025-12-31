@@ -4,11 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mazada.View"
+             xmlns:viewModels="clr-namespace:Mazada.ViewModel"
+             xmlns:views="clr-namespace:Mazada.View"
              xmlns:subviews="clr-namespace:Mazada.View.Subview"
              mc:Ignorable="d" 
              Background="#F5F5F5"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:ProductCollectionViewModel}">
+            <views:ProductCollectionView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:ProductDetailView}">
+            <views:ProductDetailView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:OrderConfirmationViewModel}">
+            <views:OrderConfirmationView/>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -22,7 +35,7 @@
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#666666"/>
         <subviews:HeaderView Grid.Column="1"/>
-        <ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" />
-
+        <!--ListView Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="White" /-->
+        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentViewModel}"/>
     </Grid>
 </UserControl>

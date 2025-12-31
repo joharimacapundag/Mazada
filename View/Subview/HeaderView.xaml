@@ -10,14 +10,19 @@
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".2*"/>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width=".6*" />
                 <ColumnDefinition Width=".2*"/>
                 <ColumnDefinition Width=".2*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
+            <TextBox Text="{Binding SearchText}" Grid.Column="1" Margin="0,8" VerticalContentAlignment="Center" MaxHeight="40"/>
             <Button Command="{Binding SearchCommand}" Grid.Column="2" Content="Search" MaxHeight="40" />
-
+            <Button Grid.Column="3"  VerticalAlignment="Center"  MaxHeight="40" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Width="80">
+                <StackPanel Orientation="Horizontal" Width="80">
+                    <Label Content="CART:" FontSize="16"/>
+                    <TextBlock  Text="{Binding CartSize}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Foreground="Red"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

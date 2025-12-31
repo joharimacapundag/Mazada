@@ -1,11 +1,12 @@
 ﻿using Mazada.Model;
+using Mazada.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Mazada.ViewModel
 {
-    class OrderConfirmationViewModel : ViewModelBase
+    class OrderConfirmationViewModel : ViewModelBase, INavigationAware<OrderItemNavArgs>
     {
         private Product _product;
         public Product Product
@@ -29,18 +30,25 @@ namespace Mazada.ViewModel
             }
         }
 
-
         public ObservableCollection<OrderItemNavArgs> OrderItems { get; set; } = new ObservableCollection<OrderItemNavArgs>();
-        public override void OnParameterChanged(object parameter)
+
+        public void OnNavigatedTo(INavigation navigation, OrderItemNavArgs parameter)
         {
-            if (parameter is OrderItemNavArgs)
-            {
-                var orderItem = (OrderItemNavArgs)parameter;
-                Product = orderItem.Product;
-                Quantity = orderItem.Quantity;
-                OrderItems.Add(new OrderItemNavArgs {Product = Product, Quantity = Quantity });
-            }
-           
+            var orderItem = parameter;
+            Product = orderItem.Product;
+            Quantity = orderItem.Quantity;
+            OrderItems.Add(new OrderItemNavArgs { Product = Product, Quantity = Quantity });
         }
+        //public override void OnParameterChanged(object parameter)
+        //{
+        //    if (parameter is OrderItemNavArgs)
+        //    {
+        //        var orderItem = (OrderItemNavArgs)parameter;
+        //        Product = orderItem.Product;
+        //        Quantity = orderItem.Quantity;
+        //        OrderItems.Add(new OrderItemNavArgs {Product = Product, Quantity = Quantity });
+        //    }
+
+        //}
     }
 }

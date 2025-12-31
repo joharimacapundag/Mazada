@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mazada.ViewModel
+namespace Mazada.Services
 {
-    class UserDetailViewModel : ViewModelBase
+    interface INavigationAware<TArgs>
     {
+        void OnNavigatedTo(INavigation navigation, TArgs parameter);
     }
 }
